@@ -2,6 +2,7 @@
 cat > .gitignore << 'EOF'
 # Test files and invoices
 test/
+tests/
 *.pdf
 
 # Python
