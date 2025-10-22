@@ -33,13 +33,14 @@ services:
               count: 1
               capabilities: [gpu]
     
+    # I comment it out for now, it causes issues with truenas-scale monitoring
     # Health check
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 120s
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 5
+    #   start_period: 120s
 
 volumes:
   docling-models:
