@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+FROM nvidia/cuda:12.6.2-runtime-ubuntu22.04
 
 # Prevent interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,12 +18,16 @@ RUN pip3 install --no-cache-dir --upgrade pip
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir \
-    fastapi \
-    "uvicorn[standard]" \
-    python-multipart \
-    docling \
-    aiofiles \
-    requests
+    fastapi==0.104.1 \
+    uvicorn[standard]==0.24.0 \
+    python-multipart==0.0.6 \
+    docling==2.15.0 \
+    torch==2.1.0 \
+    transformers==4.36.0 \
+    accelerate==0.25.0 \
+    pillow==10.1.0 \
+    pydantic==2.5.0 \
+    aiofiles==23.2.1
 
 # Create app directory
 WORKDIR /app
