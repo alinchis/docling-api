@@ -53,10 +53,10 @@ docker compose logs -f
 
 ```bash
 # Health check
-curl http://localhost:8000/health
+curl http://localhost:7080/health
 
 # Process a PDF
-curl -X POST "http://localhost:8000/convert/json" \
+curl -X POST "http://localhost:7080/convert/json" \
   -H "Content-Type: multipart/form-data" \
   -F "file=@invoice.pdf"
 ```
@@ -78,7 +78,7 @@ Convert PDF to Markdown format
 
 **Request:**
 ```bash
-curl -X POST "http://localhost:8000/convert/markdown" \
+curl -X POST "http://localhost:7080/convert/markdown" \
   -F "file=@document.pdf"
 ```
 
@@ -101,7 +101,7 @@ Convert PDF to structured JSON
 
 **Request:**
 ```bash
-curl -X POST "http://localhost:8000/convert/json" \
+curl -X POST "http://localhost:7080/convert/json" \
   -F "file=@document.pdf"
 ```
 
@@ -126,7 +126,7 @@ Extract invoice-specific fields
 
 **Request:**
 ```bash
-curl -X POST "http://localhost:8000/extract/invoice" \
+curl -X POST "http://localhost:7080/extract/invoice" \
   -F "file=@invoice.pdf"
 ```
 
@@ -168,7 +168,7 @@ environment:
 
 2. Include in requests:
 ```bash
-curl -X POST "http://localhost:8000/convert/json" \
+curl -X POST "http://localhost:7080/convert/json" \
   -H "X-API-Key: your-secret-key-here" \
   -F "file=@invoice.pdf"
 ```
@@ -207,7 +207,7 @@ def process_invoice_attachment(docname):
     file_path = file_doc.get_full_path()
     
     # Call Docling API
-    docling_url = "http://truenas-ip:8000"
+    docling_url = "http://truenas-ip:7080"
     
     with open(file_path, 'rb') as f:
         response = requests.post(
@@ -366,7 +366,7 @@ server {
     ssl_certificate_key /path/to/key.pem;
     
     location / {
-        proxy_pass http://localhost:8000;
+        proxy_pass http://localhost:7080;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_read_timeout 300s;
