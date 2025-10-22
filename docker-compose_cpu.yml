@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  docling-api:
+    image: docling-api:latest
+    container_name: docling-api
+    restart: unless-stopped
+    
+    ports:
+      - "7080:8000"
+    
+    volumes:
+      - docling-models:/app/models
+      - ./uploads:/app/uploads
+      - ./temp:/app/temp
+    
+    environment:
+      - LOG_LEVEL=INFO
+
+volumes:
+  docling-models:
+    driver: local

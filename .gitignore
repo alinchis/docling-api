@@ -1,0 +1,36 @@
+# In your project directory
+cat > .gitignore << 'EOF'
+# Test files and invoices
+test/
+*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+*.tar.gz
+
+# Temporary files
+uploads/
+temp/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+EOF
