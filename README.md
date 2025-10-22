@@ -1,3 +1,12 @@
+## ! IMPORTANT NOTICE !
+I have created the service for my personal project using Claude AI. It generated all the code, including this README file.
+
+I installed the python packages using requirements-basic.txt, it did not worked with the initially suggested ones, then saved the working setup packages to requirements.txt.
+
+On my local machine, I don't have Nvidia GPU, so I created and ran docker-compose_cpu.yml.
+
+I tested it with some pdf utility invoice, all apis worked. The least verbose api was `/extract/invoice`.
+
 # Docling PDF Processing API
 
 A FastAPI-based service for processing PDF invoices using IBM's Granite Docling model, optimized for GPU acceleration on TrueNAS Scale.
