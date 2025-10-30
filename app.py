@@ -179,6 +179,7 @@ async def health_check():
 @app.post("/convert/markdown", response_model=ConversionResponse)
 async def convert_to_markdown(
     file: UploadFile = File(...),
+    metadata: Optional[str] = Form(None),  # Add metadata parameter
     x_api_key: Optional[str] = Header(None)
 ):
     """Convert PDF to Markdown format"""
@@ -191,6 +192,12 @@ async def convert_to_markdown(
     start_time = datetime.now()
     
     try:
+        # Parse metadata if provided
+        metadata_dict = {}
+        if metadata:
+            import json
+            metadata_dict = json.loads(metadata)
+        
         # Save uploaded file
         file_path = await save_upload_file(file)
         
@@ -207,7 +214,7 @@ async def convert_to_markdown(
             success=True,
             document_id=str(uuid.uuid4()),
             format="markdown",
-            content={"markdown": markdown_content},
+            content={"markdown": markdown_content, "metadata": metadata_dict},  # Include metadata
             processing_time=processing_time,
             page_count=len(result.document.pages)
         )
